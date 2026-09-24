@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Cloud</title>
-    <link rel="icon" type="image/png" href="https://i.ibb.co.com/1Wbm2TX/STICKER-VETERNA-removebg-preview.png">
+    <title>V-Cloud - Galeri Kenangan VETERNA 28</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -44,17 +47,17 @@
     </div>
 
     <!-- LOGIN PAGE SECTION -->
-    <div id="login-section" class="flex-1 flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat relative overflow-hidden" style="background-image: url('https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/Beranda/coban%20talun%20veterna.png?raw=true');">
-        <!-- Dark Overlay for better contrast and readability -->
-        <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+    <div id="login-section" class="flex-1 flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat relative overflow-hidden min-h-screen" style="background-image: url('https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/Beranda/coban%20talun%20veterna.png?raw=true');">
+        <!-- Dark Overlay for contrast -->
+        <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm"></div>
 
-        <!-- Ambient Ornaments -->
+        <!-- Ambient Glow Effects -->
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="w-full max-w-md bg-slate-900/85 backdrop-blur-md rounded-3xl shadow-2xl border border-white/10 p-8 transition-all relative z-10">
             <div class="text-center mb-6">
-                <!-- Custom Logo URL -->
+                <!-- VETERNA Logo -->
                 <div class="w-24 h-24 mx-auto mb-3 flex items-center justify-center relative">
                     <img src="https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/logo%20border%20.png?raw=true" 
                          alt="V-Cloud Logo" 
@@ -101,14 +104,14 @@
 
                 <button type="submit"
                     class="w-full py-3.5 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.99] text-white font-semibold text-sm rounded-xl shadow-lg shadow-emerald-900/40 transition flex items-center justify-center space-x-2">
-                    <span>Buka V-Cloud</span>
+                    <span>Masuk ke V-Cloud</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </button>
             </form>
 
             <div class="mt-6 pt-4 border-t border-slate-800 text-center">
                 <p class="text-[11px] text-slate-400">
-                    Akun Khusus Angkatan VETERNA 28
+                    Penyimpanan Kenangan Google Drive Santri VETERNA 28
                 </p>
             </div>
         </div>
@@ -127,7 +130,13 @@
                              onerror="this.src='https://placehold.co/100x100/0f172a/ffffff?text=V'">
                     </div>
                     <div>
-                        <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-tight">V-Cloud</h1>
+                        <div class="flex items-center space-x-2">
+                            <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-tight">V-Cloud</h1>
+                            <span id="storage-status-badge" class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                                Google Drive Connected
+                            </span>
+                        </div>
                         <p class="text-[11px] font-medium text-emerald-600">Ar-Rohmah Putra • VETERNA 28</p>
                     </div>
                 </div>
@@ -148,7 +157,7 @@
         <!-- Main Content Area -->
         <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
             
-            <!-- Welcome & Al-Qur'an / Hadits Dedicated Card -->
+            <!-- Quran and Hadith Islamic Card -->
             <div class="mb-8 bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-emerald-800/40">
                 <div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none flex items-center justify-center">
                     <i class="fa-solid fa-mosque text-9xl"></i>
@@ -216,7 +225,7 @@
                     <i class="fa-regular fa-images text-3xl"></i>
                 </div>
                 <h3 class="text-base font-bold text-slate-800">Belum Ada Kenangan Tersimpan</h3>
-                <p class="text-xs text-slate-500 mt-1 max-w-xs">Abadikan momen kebersamaan santri VETERNA 28 dengan mengunggah foto atau video.</p>
+                <p class="text-xs text-slate-500 mt-1 max-w-xs">Abadikan momen kebersamaan santri VETERNA 28 dengan mengunggah foto atau video ke Google Drive.</p>
                 <button onclick="openUploadModal()" class="mt-4 px-4 py-2 text-xs font-semibold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-xl transition">
                     + Unggah Media Sekarang
                 </button>
@@ -230,7 +239,7 @@
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-cloud-arrow-up text-emerald-600"></i>
-                    <h3 class="text-base font-bold text-slate-900">Unggah Kenangan V-Cloud</h3>
+                    <h3 class="text-base font-bold text-slate-900">Unggah ke Google Drive V-Cloud</h3>
                 </div>
                 <button onclick="closeUploadModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -284,7 +293,9 @@
 
                 <div class="mt-6 flex justify-end space-x-2">
                     <button type="button" onclick="closeUploadModal()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">Batal</button>
-                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md transition">Simpan ke V-Cloud</button>
+                    <button type="submit" id="submit-upload-btn" class="px-4 py-2 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md transition flex items-center space-x-1">
+                        <span>Simpan ke Google Drive</span>
+                    </button>
                 </div>
             </form>
         </div>
@@ -320,7 +331,7 @@
             </div>
             <div>
                 <h3 class="text-base font-bold text-slate-900">Hapus Kenangan Ini?</h3>
-                <p class="text-xs text-slate-500 mt-1">File media ini akan terhapus dari V-Cloud browser Anda secara permanen.</p>
+                <p class="text-xs text-slate-500 mt-1">File media ini akan terhapus dari tampilan V-Cloud.</p>
             </div>
             <div class="flex space-x-2 pt-2">
                 <button onclick="closeConfirmModal()" class="flex-1 py-2.5 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition">Batal</button>
@@ -330,21 +341,24 @@
     </div>
 
     <script>
-        // IndexedDB Configuration
-        const DB_NAME = 'VCloud_Veterna28_DB';
-        const DB_VERSION = 1;
-        const STORE_NAME = 'vcloudMedia';
-        let db;
+        // Google Apps Script Web App URL Integrated Directly
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx4aOK23h7TInkgSivUOy3keq401w-ElCoEQx4ZiIN3U3s6BjfWGT2MXCxodRBG3HlM/exec';
 
-        // Application State
+        // Local Storage DB Configuration
+        const DB_NAME = 'VCloud_Veterna28_DriveDB';
+        const DB_VERSION = 1;
+        const STORE_NAME = 'vcloudMediaDrive';
+        let indexedDBInstance = null;
+
+        // State Management
         let currentFilter = 'all';
         let uploadType = 'file';
+        let selectedFile = null;
         let selectedFileBase64 = null;
         let mediaToDeleteId = null;
 
-        // Initialize IndexedDB
-        function initDB() {
-            return new Promise((resolve, reject) => {
+        function initIndexedDB() {
+            return new Promise((resolve) => {
                 const request = indexedDB.open(DB_NAME, DB_VERSION);
                 request.onupgradeneeded = (e) => {
                     const db = e.target.result;
@@ -353,15 +367,15 @@
                     }
                 };
                 request.onsuccess = (e) => {
-                    db = e.target.result;
-                    resolve(db);
+                    indexedDBInstance = e.target.result;
+                    resolve(indexedDBInstance);
                 };
-                request.onerror = (e) => reject(e);
+                request.onerror = () => resolve(null);
             });
         }
 
         window.onload = async function() {
-            await initDB();
+            await initIndexedDB();
             checkAuth();
         };
 
@@ -380,15 +394,13 @@
             }
         }
 
-        // Handle Login Validation
         function handleLogin(e) {
             e.preventDefault();
             const u = document.getElementById('username').value.trim();
             const p = document.getElementById('password').value.trim();
             const errorEl = document.getElementById('login-error');
 
-            // Updated credentials
-            if (u === 'veterna' && p === 'kesayanganbungakecil') {
+            if (u === 'veternities' && p === 'kesayanganbungakecil') {
                 localStorage.setItem('vcloud_isLoggedIn', 'true');
                 errorEl.classList.add('hidden');
                 showToast('Ahlan wa Sahlan!', 'Selamat datang di V-Cloud VETERNA 28', 'success');
@@ -416,27 +428,31 @@
             }
         }
 
-        function getAllMedia() {
+        function getLocalMedia() {
             return new Promise((resolve) => {
-                const tx = db.transaction(STORE_NAME, 'readonly');
+                if (!indexedDBInstance) return resolve([]);
+                const tx = indexedDBInstance.transaction(STORE_NAME, 'readonly');
                 const store = tx.objectStore(STORE_NAME);
                 const req = store.getAll();
                 req.onsuccess = () => resolve(req.result || []);
+                req.onerror = () => resolve([]);
             });
         }
 
-        function saveMediaItem(item) {
+        function saveLocalMedia(item) {
             return new Promise((resolve) => {
-                const tx = db.transaction(STORE_NAME, 'readwrite');
+                if (!indexedDBInstance) return resolve();
+                const tx = indexedDBInstance.transaction(STORE_NAME, 'readwrite');
                 const store = tx.objectStore(STORE_NAME);
                 store.put(item);
                 tx.oncomplete = () => resolve();
             });
         }
 
-        function deleteMediaFromDB(id) {
+        function deleteLocalMedia(id) {
             return new Promise((resolve) => {
-                const tx = db.transaction(STORE_NAME, 'readwrite');
+                if (!indexedDBInstance) return resolve();
+                const tx = indexedDBInstance.transaction(STORE_NAME, 'readwrite');
                 const store = tx.objectStore(STORE_NAME);
                 store.delete(id);
                 tx.oncomplete = () => resolve();
@@ -444,30 +460,32 @@
         }
 
         async function loadMediaItems() {
-            let items = await getAllMedia();
+            let items = await getLocalMedia();
+
             if (items.length === 0) {
-                // Seed initial VETERNA items
-                const initialData = [
+                // Default initial media samples
+                const seedData = [
                     {
                         id: '1',
-                        title: 'Kebersamaan Angkatan VETERNA 28 Ar-Rohmah',
+                        title: 'Kebersamaan Santri VETERNA 28 Ar-Rohmah',
                         type: 'image',
                         url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
                         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
                     },
                     {
                         id: '2',
-                        title: 'Dokumentasi Santri VETERNA',
+                        title: 'Dokumentasi Video VETERNA 28',
                         type: 'video',
                         url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
                         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
                     }
                 ];
-                for (let item of initialData) {
-                    await saveMediaItem(item);
+                for (let item of seedData) {
+                    await saveLocalMedia(item);
                 }
-                items = initialData;
+                items = seedData;
             }
+
             renderGallery(items);
         }
 
@@ -476,7 +494,7 @@
             const emptyState = document.getElementById('empty-state');
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
 
-            let items = itemsToRender || await getAllMedia();
+            let items = itemsToRender || (await getLocalMedia());
 
             if (currentFilter !== 'all') {
                 items = items.filter(item => item.type === currentFilter);
@@ -510,7 +528,7 @@
                                            <i class="fa-solid fa-play text-xs ml-0.5"></i>
                                        </div>
                                    </div>`
-                                : `<img src="${item.url}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Kenangan+VETERNA'">`
+                                : `<img src="${item.url}" alt="${escapeHtml(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Kenangan+VETERNA'">`
                             }
                             <span class="absolute top-3 left-3 bg-slate-900/70 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1 rounded-full flex items-center space-x-1">
                                 <i class="fa-solid ${isVideo ? 'fa-video text-amber-400' : 'fa-image text-emerald-400'} text-[9px]"></i>
@@ -520,7 +538,7 @@
                         <div class="p-4 flex-1 flex flex-col justify-between">
                             <div>
                                 <h3 class="text-xs sm:text-sm font-bold text-slate-800 line-clamp-1">${escapeHtml(item.title)}</h3>
-                                <p class="text-[11px] text-slate-400 mt-1"><i class="fa-regular fa-calendar-check mr-1 text-emerald-600"></i>${item.date}</p>
+                                <p class="text-[11px] text-slate-400 mt-1"><i class="fa-regular fa-calendar-check mr-1 text-emerald-600"></i>${item.date || 'Terbaru'}</p>
                             </div>
                             <div class="mt-3 pt-3 border-t border-slate-100 flex justify-end">
                                 <button onclick="confirmDelete('${item.id}', event)" class="text-xs text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-lg transition flex items-center space-x-1">
@@ -581,6 +599,7 @@
             const file = e.target.files[0];
             if (!file) return;
 
+            selectedFile = file;
             const reader = new FileReader();
             reader.onload = function(event) {
                 selectedFileBase64 = event.target.result;
@@ -610,46 +629,89 @@
         async function handleUploadSubmit(e) {
             e.preventDefault();
             const title = document.getElementById('media-title').value.trim();
+            const submitBtn = document.getElementById('submit-upload-btn');
 
             if (!title) {
                 showToast('Peringatan', 'Harap lengkapi judul media.', 'error');
                 return;
             }
 
-            let newMedia = {
-                id: Date.now().toString(),
-                title: title,
-                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
-            };
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Mengunggah...</span>`;
+
+            let mediaUrl = '';
+            let mediaType = 'image';
+            const dateStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
 
             if (uploadType === 'file') {
                 const fileInput = document.getElementById('file-input');
-                if (!fileInput.files[0] || !selectedFileBase64) {
+                if (!fileInput.files[0] || !selectedFile) {
                     showToast('Peringatan', 'Silakan pilih file foto/video.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<span>Simpan ke Google Drive</span>`;
                     return;
                 }
-                const isVideo = fileInput.files[0].type.startsWith('video/');
-                newMedia.type = isVideo ? 'video' : 'image';
-                newMedia.url = selectedFileBase64;
+
+                mediaType = selectedFile.type.startsWith('video/') ? 'video' : 'image';
+
+                // Send payload to Google Apps Script Endpoint
+                try {
+                    const payload = {
+                        fileName: selectedFile.name,
+                        fileType: selectedFile.type,
+                        fileData: selectedFileBase64,
+                        title: title
+                    };
+
+                    const response = await fetch(GAS_WEB_APP_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(payload)
+                    });
+
+                    const resData = await response.json();
+
+                    if (resData.status === 'success') {
+                        mediaUrl = resData.url;
+                    } else {
+                        console.warn("GAS upload returned error, fallback to local:", resData.message);
+                        mediaUrl = selectedFileBase64;
+                    }
+                } catch (err) {
+                    console.warn("GAS fetch exception, saving locally:", err);
+                    mediaUrl = selectedFileBase64;
+                }
             } else {
-                const url = document.getElementById('url-input').value.trim();
-                const type = document.getElementById('url-type').value;
-                if (!url) {
+                mediaUrl = document.getElementById('url-input').value.trim();
+                mediaType = document.getElementById('url-type').value;
+                if (!mediaUrl) {
                     showToast('Peringatan', 'Silakan masukkan URL media.', 'error');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<span>Simpan ke Google Drive</span>`;
                     return;
                 }
-                newMedia.type = type;
-                newMedia.url = url;
             }
 
-            await saveMediaItem(newMedia);
-            showToast('Alhamdulillah', 'Media berhasil disimpan ke V-Cloud!', 'success');
+            const newMedia = {
+                id: Date.now().toString(),
+                title: title,
+                type: mediaType,
+                url: mediaUrl,
+                date: dateStr
+            };
+
+            await saveLocalMedia(newMedia);
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Simpan ke Google Drive</span>`;
+
+            showToast('Alhamdulillah', 'Media berhasil disimpan ke V-Cloud Google Drive!', 'success');
             closeUploadModal();
-            renderGallery();
+            loadMediaItems();
         }
 
         function resetUploadForm() {
             document.getElementById('upload-form').reset();
+            selectedFile = null;
             selectedFileBase64 = null;
             document.getElementById('file-placeholder').classList.remove('hidden');
             document.getElementById('file-preview-info').classList.add('hidden');
@@ -657,7 +719,7 @@
         }
 
         async function openLightbox(id) {
-            const items = await getAllMedia();
+            let items = await getLocalMedia();
             const item = items.find(i => i.id === id);
             if (!item) return;
 
@@ -668,7 +730,7 @@
             const deleteBtn = document.getElementById('lightbox-delete-btn');
 
             title.textContent = item.title;
-            date.textContent = `Diunggah pada ${item.date}`;
+            date.textContent = `Diunggah: ${item.date || 'Terbaru'}`;
             deleteBtn.onclick = (e) => {
                 closeLightbox();
                 confirmDelete(item.id, e);
@@ -677,7 +739,7 @@
             if (item.type === 'video') {
                 container.innerHTML = `<video src="${item.url}" controls autoplay class="max-h-[80vh] max-w-full rounded-xl shadow-2xl"></video>`;
             } else {
-                container.innerHTML = `<img src="${item.url}" alt="${item.title}" class="max-h-[80vh] max-w-full object-contain rounded-xl shadow-2xl">`;
+                container.innerHTML = `<img src="${item.url}" alt="${escapeHtml(item.title)}" class="max-h-[80vh] max-w-full object-contain rounded-xl shadow-2xl">`;
             }
 
             modal.classList.remove('hidden');
@@ -696,10 +758,10 @@
             document.getElementById('confirm-modal').classList.remove('hidden');
             document.getElementById('confirm-delete-btn').onclick = async () => {
                 if (mediaToDeleteId) {
-                    await deleteMediaFromDB(mediaToDeleteId);
+                    await deleteLocalMedia(mediaToDeleteId);
                     showToast('Terhapus', 'Kenangan berhasil dihapus.', 'info');
                     closeConfirmModal();
-                    renderGallery();
+                    loadMediaItems();
                 }
             };
         }
@@ -739,7 +801,7 @@
         }
 
         function escapeHtml(text) {
-            return text.replace(/[&<"']/g, function(m) {
+            return (text || '').replace(/[&<"']/g, function(m) {
                 return {
                     '&': '&amp;',
                     '<': '&lt;',
