@@ -1,776 +1,303 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V-Cloud - Galeri Kenangan VETERNA 28</title>
+    <title>V-Cloud • Portal Galeri Angkatan 28 SMA Ar-Rohmah Putra</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts (Plus Jakarta Sans & Amiri for Arabic) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
         }
         .font-arabic {
             font-family: 'Amiri', serif;
         }
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(12px);
+        /* Glassmorphism custom styling */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        .glass-inner {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
             border-radius: 4px;
+        }
+        /* Custom animations */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 6s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white antialiased">
+
+    <!-- Background Image with Overlay -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <img src="https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/Beranda/coban%20talun%20veterna.png?raw=true" 
+             alt="Coban Talun Veterna" 
+             class="w-full h-full object-cover object-center scale-105 filter brightness-75 contrast-105 transition-transform duration-1000 ease-out"
+             onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1920&q=80'">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/60"></div>
+        
+        <!-- Ambient Decorative Glows -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-emerald-600/30 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 3s;"></div>
+    </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-in-out max-w-sm w-full bg-white rounded-xl shadow-xl border border-slate-100 p-4 flex items-center space-x-3 pointer-events-none">
-        <div id="toast-icon" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0"></div>
-        <div class="flex-1">
-            <h4 id="toast-title" class="text-sm font-semibold text-slate-900">Notifikasi</h4>
-            <p id="toast-message" class="text-xs text-slate-500">Pesan notifikasi...</p>
+    <div id="toast" class="fixed top-5 right-5 z-50 transform translate-x-full opacity-0 transition-all duration-300 ease-out max-w-sm w-full bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/10 p-4 flex items-center space-x-3 pointer-events-none">
+        <div id="toast-icon" class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"></div>
+        <div class="flex-1 min-w-0">
+            <h4 id="toast-title" class="text-sm font-bold text-white truncate">Notifikasi</h4>
+            <p id="toast-message" class="text-xs text-slate-300 truncate">Pesan notifikasi...</p>
         </div>
     </div>
 
-    <!-- LOGIN PAGE SECTION -->
-    <div id="login-section" class="flex-1 flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat relative overflow-hidden min-h-screen" style="background-image: url('https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/Beranda/coban%20talun%20veterna.png?raw=true');">
-        <!-- Dark Overlay for contrast -->
-        <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm"></div>
+    <!-- Header Section -->
+    <header class="relative z-10 w-full py-4 px-6 max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 p-1 border border-emerald-500/20 flex items-center justify-center shadow-lg shadow-emerald-950/50">
+                <img src="https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/logo%20border%20.png?raw=true" 
+                     alt="Logo VETERNA" 
+                     class="w-full h-full object-contain drop-shadow"
+                     onerror="this.src='https://placehold.co/100x100/10b981/ffffff?text=V'">
+            </div>
+            <div>
+                <span class="text-base font-extrabold text-white tracking-wider">V-CLOUD</span>
+                <span class="block text-[10px] font-semibold text-emerald-400 uppercase tracking-widest">Ar-Rohmah Putra</span>
+            </div>
+        </div>
+        <a href="https://ar-rohmah.com" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-slate-300 hover:text-emerald-400 transition flex items-center space-x-1 bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+            <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+            <span class="hidden sm:inline">SMA Ar-Rohmah</span>
+        </a>
+    </header>
 
-        <!-- Ambient Glow Effects -->
-        <div class="absolute -top-24 -left-24 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="w-full max-w-md bg-slate-900/85 backdrop-blur-md rounded-3xl shadow-2xl border border-white/10 p-8 transition-all relative z-10">
-            <div class="text-center mb-6">
-                <!-- VETERNA Logo -->
-                <div class="w-24 h-24 mx-auto mb-3 flex items-center justify-center relative">
+    <!-- Main Content Container -->
+    <main class="relative z-10 flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 my-auto">
+        <div class="w-full max-w-xl glass-card rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 relative overflow-hidden">
+            
+            <!-- Header Branding inside Card -->
+            <div class="text-center mb-8">
+                <div class="relative w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-emerald-500/20 rounded-full blur-xl"></div>
                     <img src="https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/logo%20border%20.png?raw=true" 
-                         alt="V-Cloud Logo" 
-                         class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-                         onerror="this.src='https://placehold.co/200x200/1e293b/ffffff?text=V-Cloud'">
+                         alt="V-Cloud VETERNA Logo" 
+                         class="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:scale-105 transition duration-300"
+                         onerror="this.src='https://placehold.co/200x200/0f172a/ffffff?text=V-Cloud'">
                 </div>
-                <h1 class="text-2xl font-extrabold text-white tracking-wide">V-Cloud</h1>
-                <p class="text-xs text-emerald-400 font-medium tracking-wider uppercase mt-0.5">Ar-Rohmah Putra • Angkatan 28</p>
-                <p class="text-xs text-slate-400 mt-2 italic">"Mengabadikan Setiap Detik Jejak Perjuangan Santri VETERNA"</p>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">V-Cloud</h1>
+                <p class="text-xs sm:text-sm text-emerald-400 font-semibold tracking-wide uppercase mt-1">
+                    Portal Penyimpanan Foto & Video Angkatan 28
+                </p>
+                <p class="text-xs text-slate-400 mt-1 font-medium">SMA Ar-Rohmah Putra Malang</p>
             </div>
 
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+            <!-- Islamic Wisdom Banner (Al-Qur'an & Hadits) -->
+            <div class="glass-inner rounded-2xl p-4 sm:p-5 mb-8 border border-emerald-500/20 space-y-3 relative">
+                <div class="flex items-center space-x-2 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                    <i class="fa-solid fa-book-quran"></i>
+                    <span>Ukhuwah Persaudaraan Santri</span>
+                </div>
+                
+                <!-- Qur'an Ayat -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Username</label>
+                    <p class="font-arabic text-base sm:text-lg text-emerald-200 text-right leading-loose tracking-wide" dir="rtl">
+                        إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ ۚ وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُرْحَمُونَ
+                    </p>
+                    <p class="text-xs text-slate-300 italic font-light mt-1.5 leading-relaxed">
+                        "Orang-orang beriman itu sesungguhnya bergandengan tangan dalam persaudaraan. Sebab itu damaikanlah (perbaikilah hubungan) antara kedua saudaramu dan bertakwalah kepada Allah, supaya kamu mendapat rahmat."
+                    </p>
+                    <p class="text-[11px] font-semibold text-emerald-400 mt-1 text-right">— QS. Al-Hujurat [49]: 10</p>
+                </div>
+
+                <!-- Divider -->
+                <div class="border-t border-white/10 my-2"></div>
+
+                <!-- Hadits Nabi -->
+                <div class="text-xs text-slate-300 flex items-start space-x-2">
+                    <i class="fa-solid fa-quote-left text-emerald-400 shrink-0 text-sm mt-0.5"></i>
+                    <p class="leading-relaxed">
+                        <span class="font-semibold text-white">Hadits Nabi ﷺ:</span> "Perumpamaan mukmin dengan mukmin lainnya dalam hal saling mencintai, menyayangi, dan mengasihi bagaikan satu tubuh. Apabila ada anggota tubuh yang sakit, maka seluruh tubuhnya ikut merasa demam dan tidak bisa tidur." 
+                        <span class="text-slate-400 text-[10px] block mt-0.5">(HR. Bukhari & Muslim)</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5">
+                <!-- Username Input -->
+                <div>
+                    <label for="username" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Username Santri</label>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
                             <i class="fa-regular fa-user text-sm"></i>
-                        </span>
-                        <input type="text" id="username" required autocomplete="off"
-                            class="w-full pl-10 pr-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                        </div>
+                        <input type="text" id="username" required autocomplete="username"
+                            class="w-full pl-11 pr-4 py-3.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200"
                             placeholder="Masukkan username santri">
                     </div>
                 </div>
 
+                <!-- Password Input with Toggle View -->
                 <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Password</label>
+                    <div class="flex items-center justify-between mb-2">
+                        <label for="password" class="block text-xs font-bold uppercase tracking-wider text-slate-300">Password</label>
+                    </div>
                     <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
                             <i class="fa-solid fa-lock text-sm"></i>
-                        </span>
-                        <input type="password" id="password" required
-                            class="w-full pl-10 pr-10 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition"
+                        </div>
+                        <input type="password" id="password" required autocomplete="current-password"
+                            class="w-full pl-11 pr-11 py-3.5 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-200"
                             placeholder="Masukkan password">
-                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200">
+                        <button type="button" onclick="togglePasswordVisibility()" 
+                                class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-200 transition focus:outline-none"
+                                title="Lihat Password">
                             <i id="password-toggle-icon" class="fa-regular fa-eye"></i>
                         </button>
                     </div>
                 </div>
 
-                <div id="login-error" class="hidden p-3 bg-red-950/80 border border-red-800/80 rounded-xl text-xs text-red-300 flex items-center space-x-2">
-                    <i class="fa-solid fa-circle-exclamation shrink-0 text-red-400"></i>
-                    <span id="login-error-msg">Username atau password salah!</span>
+                <!-- Error Message Banner -->
+                <div id="login-error" class="hidden p-3.5 bg-red-950/80 border border-red-800/80 rounded-xl text-xs text-red-200 flex items-start space-x-2.5 animate-bounce-once">
+                    <i class="fa-solid fa-circle-exclamation text-red-400 text-sm shrink-0 mt-0.5"></i>
+                    <span id="login-error-msg">Username atau password yang Anda masukkan tidak sesuai!</span>
                 </div>
 
-                <button type="submit"
-                    class="w-full py-3.5 px-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 active:scale-[0.99] text-white font-semibold text-sm rounded-xl shadow-lg shadow-emerald-900/40 transition flex items-center justify-center space-x-2">
-                    <span>Masuk ke V-Cloud</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                <!-- Submit Button -->
+                <button type="submit" id="login-btn"
+                    class="w-full py-3.5 px-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 active:scale-[0.99] text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-950/60 transition duration-300 flex items-center justify-center space-x-2 cursor-pointer group">
+                    <span id="btn-text">Masuk ke V-Cloud</span>
+                    <i id="btn-icon" class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                 </button>
             </form>
 
-            <div class="mt-6 pt-4 border-t border-slate-800 text-center">
-                <p class="text-[11px] text-slate-400">
-                    Penyimpanan Kenangan Google Drive Santri VETERNA 28
+            <!-- Card Footer Note -->
+            <div class="mt-8 pt-5 border-t border-white/10 text-center">
+                <p class="text-xs text-slate-400 flex items-center justify-center space-x-1.5">
+                    <i class="fa-brands fa-google-drive text-emerald-400"></i>
+                    <span>Tersambung langsung dengan Google Drive VETERNA 28</span>
                 </p>
             </div>
         </div>
-    </div>
+    </main>
 
-    <!-- DASHBOARD GALLERY SECTION -->
-    <div id="dashboard-section" class="hidden flex-1 flex flex-col bg-slate-50">
-        <!-- Header / Navbar -->
-        <header class="sticky top-0 z-30 glass-effect border-b border-slate-200/80 shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 flex items-center justify-center">
-                        <img src="https://github.com/virtueterna28/web/blob/main/mentahan%20aset%20web/logo%20border%20.png?raw=true" 
-                             alt="V-Cloud Logo" 
-                             class="w-full h-full object-contain"
-                             onerror="this.src='https://placehold.co/100x100/0f172a/ffffff?text=V'">
-                    </div>
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <h1 class="text-base font-extrabold text-slate-900 tracking-tight leading-tight">V-Cloud</h1>
-                            <span id="storage-status-badge" class="text-[10px] bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                                Google Drive Connected
-                            </span>
-                        </div>
-                        <p class="text-[11px] font-medium text-emerald-600">Ar-Rohmah Putra • VETERNA 28</p>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-3">
-                    <button onclick="openUploadModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition shadow-md shadow-emerald-200 flex items-center space-x-2">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span class="hidden sm:inline">Unggah Kenangan</span>
-                    </button>
-                    <button onclick="handleLogout()" class="p-2.5 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition text-sm flex items-center space-x-2" title="Keluar Sesi">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span class="hidden sm:inline text-xs font-medium">Keluar</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Main Content Area -->
-        <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            
-            <!-- Quran and Hadith Islamic Card -->
-            <div class="mb-8 bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-emerald-800/40">
-                <div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none flex items-center justify-center">
-                    <i class="fa-solid fa-mosque text-9xl"></i>
-                </div>
-                
-                <div class="relative z-10 max-w-3xl space-y-3">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-emerald-500/20 border border-emerald-400/30 rounded-full text-emerald-300 text-xs font-semibold">
-                        <i class="fa-solid fa-heart text-[10px]"></i>
-                        <span>Ukhuwah Islamiyah Santri VETERNA 28</span>
-                    </div>
-
-                    <h2 class="text-xl sm:text-2xl font-bold text-white">
-                        Ahlan wa Sahlan, Pejuang Khidmah Ar-Rohmah Putra!
-                    </h2>
-
-                    <!-- Qur'an Reference -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/10 my-3">
-                        <p class="font-arabic text-lg sm:text-xl text-emerald-200 text-right leading-relaxed mb-2" dir="rtl">
-                            إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ ۚ وَاتَّقُوا اللَّهَ لَعَلَّكُمْ تُرْحَمُونَ
-                        </p>
-                        <p class="text-xs sm:text-sm text-slate-200 italic font-light">
-                            "Orang-orang beriman itu sesungguhnya bergandengan tangan dalam persaudaraan. Sebab itu damaikanlah (perbaikilah hubungan) antara kedua saudaramu dan bertakwalah kepada Allah, supaya kamu mendapat rahmat."
-                        </p>
-                        <p class="text-[11px] font-semibold text-emerald-300 mt-1.5">— QS. Al-Hujurat [49]: 10</p>
-                    </div>
-
-                    <!-- Hadith Reference -->
-                    <div class="text-xs text-slate-300 flex items-start space-x-2">
-                        <i class="fa-solid fa-quote-left text-emerald-400 text-base shrink-0 mt-0.5"></i>
-                        <p>
-                            <span class="font-semibold text-white">Hadits Nabi ﷺ:</span> "Perumpamaan mukmin dengan mukmin lainnya dalam hal saling mencintai, menyayangi, dan mengasihi bagaikan satu tubuh. Apabila ada anggota tubuh yang sakit, maka seluruh tubuhnya ikut merasa demam dan tidak bisa tidur." <span class="text-slate-400">(HR. Bukhari & Muslim)</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Filter & Search Bar -->
-            <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-6">
-                <!-- Search Input -->
-                <div class="relative flex-1 max-w-md">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
-                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
-                    </span>
-                    <input type="text" id="search-input" oninput="renderGallery()"
-                        class="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm"
-                        placeholder="Cari foto atau video kenangan...">
-                </div>
-
-                <!-- Filter Tabs -->
-                <div class="flex items-center bg-slate-200/70 p-1 rounded-xl text-xs sm:text-sm font-medium self-start md:self-auto">
-                    <button id="filter-all" onclick="setFilter('all')" class="px-4 py-1.5 rounded-lg text-slate-800 bg-white shadow-sm transition">Semua Media</button>
-                    <button id="filter-image" onclick="setFilter('image')" class="px-4 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">Foto</button>
-                    <button id="filter-video" onclick="setFilter('video')" class="px-4 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition">Video</button>
-                </div>
-            </div>
-
-            <!-- Gallery Grid -->
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Dynamic Content Loaded by JS -->
-            </div>
-
-            <!-- Empty State -->
-            <div id="empty-state" class="hidden flex-col items-center justify-center py-16 text-center">
-                <div class="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4">
-                    <i class="fa-regular fa-images text-3xl"></i>
-                </div>
-                <h3 class="text-base font-bold text-slate-800">Belum Ada Kenangan Tersimpan</h3>
-                <p class="text-xs text-slate-500 mt-1 max-w-xs">Abadikan momen kebersamaan santri VETERNA 28 dengan mengunggah foto atau video ke Google Drive.</p>
-                <button onclick="openUploadModal()" class="mt-4 px-4 py-2 text-xs font-semibold text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-xl transition">
-                    + Unggah Media Sekarang
-                </button>
-            </div>
-        </main>
-    </div>
-
-    <!-- UPLOAD MODAL -->
-    <div id="upload-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-5">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-cloud-arrow-up text-emerald-600"></i>
-                    <h3 class="text-base font-bold text-slate-900">Unggah ke Google Drive V-Cloud</h3>
-                </div>
-                <button onclick="closeUploadModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Mode Switch: File vs URL -->
-            <div class="flex bg-slate-100 p-1 rounded-xl text-xs font-semibold">
-                <button id="tab-file" onclick="switchUploadTab('file')" class="flex-1 py-2 rounded-lg bg-white shadow-sm text-emerald-700">Upload File</button>
-                <button id="tab-url" onclick="switchUploadTab('url')" class="flex-1 py-2 rounded-lg text-slate-500">Gunakan Link URL</button>
-            </div>
-
-            <form id="upload-form" onsubmit="handleUploadSubmit(event)">
-                <!-- File Input Mode -->
-                <div id="upload-file-container" class="space-y-4">
-                    <div class="border-2 border-dashed border-slate-200 hover:border-emerald-500 rounded-2xl p-6 text-center cursor-pointer transition bg-slate-50/50 relative" onclick="document.getElementById('file-input').click()">
-                        <input type="file" id="file-input" accept="image/*,video/*" onchange="handleFileSelect(event)" class="hidden">
-                        <div id="file-placeholder">
-                            <i class="fa-solid fa-photo-film text-3xl text-emerald-600 mb-2"></i>
-                            <p class="text-xs font-semibold text-slate-700">Pilih Foto / Video Santri</p>
-                            <p class="text-[10px] text-slate-400 mt-1">Format gambar atau MP4/WEBM</p>
-                        </div>
-                        <div id="file-preview-info" class="hidden flex flex-col items-center">
-                            <div id="file-thumb-container" class="w-24 h-24 rounded-xl overflow-hidden mb-2 bg-slate-100 flex items-center justify-center border border-slate-200"></div>
-                            <p id="file-name" class="text-xs font-semibold text-slate-700 truncate max-w-[200px]"></p>
-                            <span class="text-[10px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full mt-1 font-medium">Ganti File</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- URL Input Mode -->
-                <div id="upload-url-container" class="hidden space-y-3">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">URL Media Direct</label>
-                        <input type="url" id="url-input" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="https://domain.com/foto-santri.jpg">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Jenis File</label>
-                        <select id="url-type" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 outline-none">
-                            <option value="image">Foto (Gambar)</option>
-                            <option value="video">Video</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Shared Title Input -->
-                <div class="mt-4">
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Judul / Keterangan Momen</label>
-                    <input type="text" id="media-title" required class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Contoh: Rihlah Santri 28 Ar-Rohmah">
-                </div>
-
-                <div class="mt-6 flex justify-end space-x-2">
-                    <button type="button" onclick="closeUploadModal()" class="px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-xl transition">Batal</button>
-                    <button type="submit" id="submit-upload-btn" class="px-4 py-2 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md transition flex items-center space-x-1">
-                        <span>Simpan ke Google Drive</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- LIGHTBOX MODAL -->
-    <div id="lightbox-modal" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6">
-        <div class="flex items-center justify-between text-white z-10">
-            <div>
-                <h3 id="lightbox-title" class="text-sm sm:text-base font-bold text-emerald-300">Judul Media</h3>
-                <p id="lightbox-date" class="text-xs text-slate-400">Tanggal Unggah</p>
-            </div>
-            <div class="flex items-center space-x-3">
-                <button id="lightbox-delete-btn" class="p-2 text-red-400 hover:text-red-300 hover:bg-white/10 rounded-xl transition" title="Hapus Media Ini">
-                    <i class="fa-regular fa-trash-can text-lg"></i>
-                </button>
-                <button onclick="closeLightbox()" class="p-2 text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition">
-                    <i class="fa-solid fa-xmark text-2xl"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="flex-1 flex items-center justify-center my-4 overflow-hidden">
-            <div id="lightbox-content" class="max-h-full max-w-full flex items-center justify-center"></div>
-        </div>
-    </div>
-
-    <!-- DELETE CONFIRMATION MODAL -->
-    <div id="confirm-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-100 text-center space-y-4">
-            <div class="w-12 h-12 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mx-auto">
-                <i class="fa-solid fa-trash-can text-xl"></i>
-            </div>
-            <div>
-                <h3 class="text-base font-bold text-slate-900">Hapus Kenangan Ini?</h3>
-                <p class="text-xs text-slate-500 mt-1">File media ini akan terhapus dari tampilan V-Cloud.</p>
-            </div>
-            <div class="flex space-x-2 pt-2">
-                <button onclick="closeConfirmModal()" class="flex-1 py-2.5 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition">Batal</button>
-                <button id="confirm-delete-btn" class="flex-1 py-2.5 text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-xl transition shadow-md shadow-red-100">Hapus</button>
-            </div>
-        </div>
-    </div>
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-4 text-center text-xs text-slate-400 bg-slate-950/80 backdrop-blur-md border-t border-white/5">
+        <p>&copy; 2026 <span class="text-emerald-400 font-semibold">VETERNA 28</span> • SMA Ar-Rohmah Putra Malang. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Google Apps Script Web App URL Integrated Directly
-        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx4aOK23h7TInkgSivUOy3keq401w-ElCoEQx4ZiIN3U3s6BjfWGT2MXCxodRBG3HlM/exec';
+        // Target Google Drive Folder URL for VETERNA 28
+        const TARGET_DRIVE_URL = 'https://drive.google.com/drive/folders/1Iy86hVfA3Sa081EKJVXAgWOF_c3sVhfE?zx=79bczkdwnp9u';
 
-        // Local Storage DB Configuration
-        const DB_NAME = 'VCloud_Veterna28_DriveDB';
-        const DB_VERSION = 1;
-        const STORE_NAME = 'vcloudMediaDrive';
-        let indexedDBInstance = null;
+        // Valid credentials
+        const VALID_USERNAME = 'veternities';
+        const VALID_PASSWORD = 'kesayanganbungakecil';
 
-        // State Management
-        let currentFilter = 'all';
-        let uploadType = 'file';
-        let selectedFile = null;
-        let selectedFileBase64 = null;
-        let mediaToDeleteId = null;
-
-        function initIndexedDB() {
-            return new Promise((resolve) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
-                request.onupgradeneeded = (e) => {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        db.createObjectStore(STORE_NAME, { keyPath: 'id' });
-                    }
-                };
-                request.onsuccess = (e) => {
-                    indexedDBInstance = e.target.result;
-                    resolve(indexedDBInstance);
-                };
-                request.onerror = () => resolve(null);
-            });
-        }
-
-        window.onload = async function() {
-            await initIndexedDB();
-            checkAuth();
-        };
-
-        function checkAuth() {
-            const isLoggedIn = localStorage.getItem('vcloud_isLoggedIn') === 'true';
-            const loginSection = document.getElementById('login-section');
-            const dashboardSection = document.getElementById('dashboard-section');
-
-            if (isLoggedIn) {
-                loginSection.classList.add('hidden');
-                dashboardSection.classList.remove('hidden');
-                loadMediaItems();
-            } else {
-                loginSection.classList.remove('hidden');
-                dashboardSection.classList.add('hidden');
-            }
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const u = document.getElementById('username').value.trim();
-            const p = document.getElementById('password').value.trim();
-            const errorEl = document.getElementById('login-error');
-
-            if (u === 'veternities' && p === 'kesayanganbungakecil') {
-                localStorage.setItem('vcloud_isLoggedIn', 'true');
-                errorEl.classList.add('hidden');
-                showToast('Ahlan wa Sahlan!', 'Selamat datang di V-Cloud VETERNA 28', 'success');
-                checkAuth();
-            } else {
-                errorEl.classList.remove('hidden');
-            }
-        }
-
-        function handleLogout() {
-            localStorage.removeItem('vcloud_isLoggedIn');
-            showToast('Keluar', 'Anda telah keluar dari V-Cloud.', 'info');
-            checkAuth();
-        }
-
+        /**
+         * Toggles password input visibility between text and password types
+         */
         function togglePasswordVisibility() {
-            const input = document.getElementById('password');
-            const icon = document.getElementById('password-toggle-icon');
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.className = 'fa-regular fa-eye-slash';
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('password-toggle-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fa-regular fa-eye-slash';
             } else {
-                input.type = 'password';
-                icon.className = 'fa-regular fa-eye';
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fa-regular fa-eye';
             }
         }
 
-        function getLocalMedia() {
-            return new Promise((resolve) => {
-                if (!indexedDBInstance) return resolve([]);
-                const tx = indexedDBInstance.transaction(STORE_NAME, 'readonly');
-                const store = tx.objectStore(STORE_NAME);
-                const req = store.getAll();
-                req.onsuccess = () => resolve(req.result || []);
-                req.onerror = () => resolve([]);
-            });
-        }
+        /**
+         * Handles the login form submission
+         */
+        function handleLogin(event) {
+            event.preventDefault();
 
-        function saveLocalMedia(item) {
-            return new Promise((resolve) => {
-                if (!indexedDBInstance) return resolve();
-                const tx = indexedDBInstance.transaction(STORE_NAME, 'readwrite');
-                const store = tx.objectStore(STORE_NAME);
-                store.put(item);
-                tx.oncomplete = () => resolve();
-            });
-        }
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value.trim();
+            const errorElement = document.getElementById('login-error');
+            const errorMsgElement = document.getElementById('login-error-msg');
+            const loginBtn = document.getElementById('login-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
 
-        function deleteLocalMedia(id) {
-            return new Promise((resolve) => {
-                if (!indexedDBInstance) return resolve();
-                const tx = indexedDBInstance.transaction(STORE_NAME, 'readwrite');
-                const store = tx.objectStore(STORE_NAME);
-                store.delete(id);
-                tx.oncomplete = () => resolve();
-            });
-        }
+            // Hide previous errors
+            errorElement.classList.add('hidden');
 
-        async function loadMediaItems() {
-            let items = await getLocalMedia();
+            // Verify credentials
+            if (usernameInput === VALID_USERNAME && passwordInput === VALID_PASSWORD) {
+                // SUCCESS STATE
+                showToast('Login Berhasil!', 'Mengarahkan ke Google Drive V-Cloud...', 'success');
 
-            if (items.length === 0) {
-                // Default initial media samples
-                const seedData = [
-                    {
-                        id: '1',
-                        title: 'Kebersamaan Santri VETERNA 28 Ar-Rohmah',
-                        type: 'image',
-                        url: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
-                        date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
-                    },
-                    {
-                        id: '2',
-                        title: 'Dokumentasi Video VETERNA 28',
-                        type: 'video',
-                        url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-                        date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
-                    }
-                ];
-                for (let item of seedData) {
-                    await saveLocalMedia(item);
-                }
-                items = seedData;
-            }
+                // UI loading state
+                loginBtn.disabled = true;
+                loginBtn.classList.remove('hover:from-emerald-500', 'hover:to-teal-400');
+                loginBtn.classList.add('opacity-90', 'cursor-wait');
+                btnText.textContent = 'Membuka Google Drive V-Cloud...';
+                btnIcon.className = 'fa-solid fa-circle-notch animate-spin text-sm';
 
-            renderGallery(items);
-        }
+                // Short transition delay before redirecting to Google Drive
+                setTimeout(() => {
+                    window.location.href = TARGET_DRIVE_URL;
+                }, 1500);
 
-        async function renderGallery(itemsToRender = null) {
-            const grid = document.getElementById('gallery-grid');
-            const emptyState = document.getElementById('empty-state');
-            const searchQuery = document.getElementById('search-input').value.toLowerCase();
-
-            let items = itemsToRender || (await getLocalMedia());
-
-            if (currentFilter !== 'all') {
-                items = items.filter(item => item.type === currentFilter);
-            }
-
-            if (searchQuery) {
-                items = items.filter(item => item.title.toLowerCase().includes(searchQuery));
-            }
-
-            grid.innerHTML = '';
-
-            if (items.length === 0) {
-                emptyState.classList.remove('hidden');
-                emptyState.classList.add('flex');
             } else {
-                emptyState.classList.add('hidden');
-                emptyState.classList.remove('flex');
-
-                items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = "group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-slate-100 flex flex-col";
-                    
-                    const isVideo = item.type === 'video';
-                    
-                    card.innerHTML = `
-                        <div class="relative w-full h-48 bg-slate-900 overflow-hidden cursor-pointer" onclick="openLightbox('${item.id}')">
-                            ${isVideo 
-                                ? `<video src="${item.url}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"></video>
-                                   <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
-                                       <div class="w-11 h-11 bg-white/80 rounded-full flex items-center justify-center text-slate-900 backdrop-blur-sm group-hover:scale-110 transition shadow-lg">
-                                           <i class="fa-solid fa-play text-xs ml-0.5"></i>
-                                       </div>
-                                   </div>`
-                                : `<img src="${item.url}" alt="${escapeHtml(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Kenangan+VETERNA'">`
-                            }
-                            <span class="absolute top-3 left-3 bg-slate-900/70 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1 rounded-full flex items-center space-x-1">
-                                <i class="fa-solid ${isVideo ? 'fa-video text-amber-400' : 'fa-image text-emerald-400'} text-[9px]"></i>
-                                <span>${isVideo ? 'Video' : 'Foto'}</span>
-                            </span>
-                        </div>
-                        <div class="p-4 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h3 class="text-xs sm:text-sm font-bold text-slate-800 line-clamp-1">${escapeHtml(item.title)}</h3>
-                                <p class="text-[11px] text-slate-400 mt-1"><i class="fa-regular fa-calendar-check mr-1 text-emerald-600"></i>${item.date || 'Terbaru'}</p>
-                            </div>
-                            <div class="mt-3 pt-3 border-t border-slate-100 flex justify-end">
-                                <button onclick="confirmDelete('${item.id}', event)" class="text-xs text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded-lg transition flex items-center space-x-1">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                    <span>Hapus</span>
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-        }
-
-        function setFilter(filter) {
-            currentFilter = filter;
-            ['all', 'image', 'video'].forEach(f => {
-                const btn = document.getElementById(`filter-${f}`);
-                if (f === filter) {
-                    btn.className = "px-4 py-1.5 rounded-lg font-medium text-slate-800 bg-white shadow-sm transition";
-                } else {
-                    btn.className = "px-4 py-1.5 rounded-lg font-medium text-slate-600 hover:text-slate-900 transition";
-                }
-            });
-            renderGallery();
-        }
-
-        function openUploadModal() {
-            document.getElementById('upload-modal').classList.remove('hidden');
-        }
-
-        function closeUploadModal() {
-            document.getElementById('upload-modal').classList.add('hidden');
-            resetUploadForm();
-        }
-
-        function switchUploadTab(tab) {
-            uploadType = tab;
-            const fileTab = document.getElementById('tab-file');
-            const urlTab = document.getElementById('tab-url');
-            const fileContainer = document.getElementById('upload-file-container');
-            const urlContainer = document.getElementById('upload-url-container');
-
-            if (tab === 'file') {
-                fileTab.className = "flex-1 py-2 rounded-lg bg-white shadow-sm text-emerald-700";
-                urlTab.className = "flex-1 py-2 rounded-lg text-slate-500";
-                fileContainer.classList.remove('hidden');
-                urlContainer.classList.add('hidden');
-            } else {
-                urlTab.className = "flex-1 py-2 rounded-lg bg-white shadow-sm text-emerald-700";
-                fileTab.className = "flex-1 py-2 rounded-lg text-slate-500";
-                urlContainer.classList.remove('hidden');
-                fileContainer.classList.add('hidden');
-            }
-        }
-
-        function handleFileSelect(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            selectedFile = file;
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                selectedFileBase64 = event.target.result;
-                const placeholder = document.getElementById('file-placeholder');
-                const previewInfo = document.getElementById('file-preview-info');
-                const thumb = document.getElementById('file-thumb-container');
-                const fileName = document.getElementById('file-name');
-
-                placeholder.classList.add('hidden');
-                previewInfo.classList.remove('hidden');
-                fileName.textContent = file.name;
-
-                if (file.type.startsWith('image/')) {
-                    thumb.innerHTML = `<img src="${selectedFileBase64}" class="w-full h-full object-cover">`;
-                } else if (file.type.startsWith('video/')) {
-                    thumb.innerHTML = `<i class="fa-solid fa-file-video text-2xl text-emerald-600"></i>`;
-                }
+                // FAILED STATE
+                errorElement.classList.remove('hidden');
                 
-                const titleInput = document.getElementById('media-title');
-                if (!titleInput.value) {
-                    titleInput.value = file.name.replace(/\.[^/.]+$/, "");
+                if (usernameInput !== VALID_USERNAME && passwordInput !== VALID_PASSWORD) {
+                    errorMsgElement.textContent = 'Username dan password salah! Silakan periksa kembali.';
+                } else if (usernameInput !== VALID_USERNAME) {
+                    errorMsgElement.textContent = 'Username santri tidak ditemukan!';
+                } else {
+                    errorMsgElement.textContent = 'Password yang Anda masukkan salah!';
                 }
-            };
-            reader.readAsDataURL(file);
-        }
 
-        async function handleUploadSubmit(e) {
-            e.preventDefault();
-            const title = document.getElementById('media-title').value.trim();
-            const submitBtn = document.getElementById('submit-upload-btn');
-
-            if (!title) {
-                showToast('Peringatan', 'Harap lengkapi judul media.', 'error');
-                return;
+                showToast('Akses Ditolak', 'Username atau password salah.', 'error');
+                
+                // Shake animation for error feedback
+                const card = document.querySelector('.glass-card');
+                card.classList.add('animate-pulse');
+                setTimeout(() => card.classList.remove('animate-pulse'), 500);
             }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Mengunggah...</span>`;
-
-            let mediaUrl = '';
-            let mediaType = 'image';
-            const dateStr = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-
-            if (uploadType === 'file') {
-                const fileInput = document.getElementById('file-input');
-                if (!fileInput.files[0] || !selectedFile) {
-                    showToast('Peringatan', 'Silakan pilih file foto/video.', 'error');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<span>Simpan ke Google Drive</span>`;
-                    return;
-                }
-
-                mediaType = selectedFile.type.startsWith('video/') ? 'video' : 'image';
-
-                // Send payload to Google Apps Script Endpoint
-                try {
-                    const payload = {
-                        fileName: selectedFile.name,
-                        fileType: selectedFile.type,
-                        fileData: selectedFileBase64,
-                        title: title
-                    };
-
-                    const response = await fetch(GAS_WEB_APP_URL, {
-                        method: 'POST',
-                        body: JSON.stringify(payload)
-                    });
-
-                    const resData = await response.json();
-
-                    if (resData.status === 'success') {
-                        mediaUrl = resData.url;
-                    } else {
-                        console.warn("GAS upload returned error, fallback to local:", resData.message);
-                        mediaUrl = selectedFileBase64;
-                    }
-                } catch (err) {
-                    console.warn("GAS fetch exception, saving locally:", err);
-                    mediaUrl = selectedFileBase64;
-                }
-            } else {
-                mediaUrl = document.getElementById('url-input').value.trim();
-                mediaType = document.getElementById('url-type').value;
-                if (!mediaUrl) {
-                    showToast('Peringatan', 'Silakan masukkan URL media.', 'error');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = `<span>Simpan ke Google Drive</span>`;
-                    return;
-                }
-            }
-
-            const newMedia = {
-                id: Date.now().toString(),
-                title: title,
-                type: mediaType,
-                url: mediaUrl,
-                date: dateStr
-            };
-
-            await saveLocalMedia(newMedia);
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>Simpan ke Google Drive</span>`;
-
-            showToast('Alhamdulillah', 'Media berhasil disimpan ke V-Cloud Google Drive!', 'success');
-            closeUploadModal();
-            loadMediaItems();
         }
 
-        function resetUploadForm() {
-            document.getElementById('upload-form').reset();
-            selectedFile = null;
-            selectedFileBase64 = null;
-            document.getElementById('file-placeholder').classList.remove('hidden');
-            document.getElementById('file-preview-info').classList.add('hidden');
-            document.getElementById('file-thumb-container').innerHTML = '';
-        }
-
-        async function openLightbox(id) {
-            let items = await getLocalMedia();
-            const item = items.find(i => i.id === id);
-            if (!item) return;
-
-            const modal = document.getElementById('lightbox-modal');
-            const title = document.getElementById('lightbox-title');
-            const date = document.getElementById('lightbox-date');
-            const container = document.getElementById('lightbox-content');
-            const deleteBtn = document.getElementById('lightbox-delete-btn');
-
-            title.textContent = item.title;
-            date.textContent = `Diunggah: ${item.date || 'Terbaru'}`;
-            deleteBtn.onclick = (e) => {
-                closeLightbox();
-                confirmDelete(item.id, e);
-            };
-
-            if (item.type === 'video') {
-                container.innerHTML = `<video src="${item.url}" controls autoplay class="max-h-[80vh] max-w-full rounded-xl shadow-2xl"></video>`;
-            } else {
-                container.innerHTML = `<img src="${item.url}" alt="${escapeHtml(item.title)}" class="max-h-[80vh] max-w-full object-contain rounded-xl shadow-2xl">`;
-            }
-
-            modal.classList.remove('hidden');
-        }
-
-        function closeLightbox() {
-            const modal = document.getElementById('lightbox-modal');
-            const container = document.getElementById('lightbox-content');
-            container.innerHTML = '';
-            modal.classList.add('hidden');
-        }
-
-        function confirmDelete(id, e) {
-            if (e) e.stopPropagation();
-            mediaToDeleteId = id;
-            document.getElementById('confirm-modal').classList.remove('hidden');
-            document.getElementById('confirm-delete-btn').onclick = async () => {
-                if (mediaToDeleteId) {
-                    await deleteLocalMedia(mediaToDeleteId);
-                    showToast('Terhapus', 'Kenangan berhasil dihapus.', 'info');
-                    closeConfirmModal();
-                    loadMediaItems();
-                }
-            };
-        }
-
-        function closeConfirmModal() {
-            mediaToDeleteId = null;
-            document.getElementById('confirm-modal').classList.add('hidden');
-        }
-
+        /**
+         * Shows interactive toast notification
+         */
         function showToast(title, message, type = 'info') {
             const toast = document.getElementById('toast');
             const toastIcon = document.getElementById('toast-icon');
@@ -781,34 +308,23 @@
             toastMessage.textContent = message;
 
             if (type === 'success') {
-                toastIcon.className = "w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-emerald-100 text-emerald-600";
-                toastIcon.innerHTML = '<i class="fa-solid fa-check"></i>';
+                toastIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+                toastIcon.innerHTML = '<i class="fa-solid fa-check text-lg"></i>';
             } else if (type === 'error') {
-                toastIcon.className = "w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-red-100 text-red-600";
-                toastIcon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                toastIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-red-500/20 text-red-400 border border-red-500/30";
+                toastIcon.innerHTML = '<i class="fa-solid fa-xmark text-lg"></i>';
             } else {
-                toastIcon.className = "w-9 h-9 rounded-full flex items-center justify-center shrink-0 bg-teal-100 text-teal-600";
-                toastIcon.innerHTML = '<i class="fa-solid fa-info"></i>';
+                toastIcon.className = "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-teal-500/20 text-teal-400 border border-teal-500/30";
+                toastIcon.innerHTML = '<i class="fa-solid fa-info text-lg"></i>';
             }
 
-            toast.classList.remove('translate-x-full', 'opacity-0');
+            toast.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
             toast.classList.add('translate-x-0', 'opacity-100');
 
             setTimeout(() => {
                 toast.classList.remove('translate-x-0', 'opacity-100');
-                toast.classList.add('translate-x-full', 'opacity-0');
-            }, 3000);
-        }
-
-        function escapeHtml(text) {
-            return (text || '').replace(/[&<"']/g, function(m) {
-                return {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                }[m];
-            });
+                toast.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+            }, 3500);
         }
     </script>
 </body>
