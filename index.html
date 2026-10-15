@@ -209,9 +209,39 @@
         // Target Google Drive Folder URL for VETERNA 28
         const TARGET_DRIVE_URL = 'https://drive.google.com/drive/folders/1Iy86hVfA3Sa081EKJVXAgWOF_c3sVhfE?zx=79bczkdwnp9u';
 
-        // Valid credentials
-        const VALID_USERNAME = 'veternities';
-        const VALID_PASSWORD = 'kesayanganbungakecil';
+        // Account credentials and their destination links
+        const ACCOUNTS = [
+            {
+                username: 'veternities',
+                password: 'kesayanganbungakecil',
+                url: 'https://drive.google.com/drive/folders/1Iy86hVfA3Sa081EKJVXAgWOF_c3sVhfE?zx=79bczkdwnp9u'
+            },
+            {
+                username: 'adminveterna',
+                password: 'bahagia@selalu',
+                url: 'https://drive.google.com/drive/folders/1xluSyXLlQc13GjM5CgflRM4b7Fn2-TFu'
+            },
+            {
+                username: 'admin2sekben',
+                password: 'mesikecil!',
+                url: 'https://drive.google.com/drive/folders/1nn9EZqUxcCfmdnVU345ZwOFDtX1ERZ9_'
+            },
+            {
+                username: 'artistik@veterna',
+                password: 'saidun@kece',
+                url: 'https://drive.google.com/drive/folders/1bsrRMMiGV0UuwqyH-_06Vh7W7EzeVnwt'
+            },
+            {
+                username: 'dev#veterna',
+                password: 'web@veter',
+                url: 'https://github.com/virtueterna28/web.git'
+            },
+            {
+                username: 'dev#veterna',
+                password: 'web@vcolud',
+                url: 'https://github.com/virtueterna28/v-cloud.git'
+            }
+        ];
 
         /**
          * Toggles password input visibility between text and password types
@@ -246,10 +276,14 @@
             // Hide previous errors
             errorElement.classList.add('hidden');
 
-            // Verify credentials
-            if (usernameInput === VALID_USERNAME && passwordInput === VALID_PASSWORD) {
+            // Find the account matching both username and password
+            const account = ACCOUNTS.find(
+                item => item.username === usernameInput && item.password === passwordInput
+            );
+
+            if (account) {
                 // SUCCESS STATE
-                showToast('Login Berhasil!', 'Mengarahkan ke Google Drive V-Cloud...', 'success');
+                showToast('Login Berhasil!', 'Mengarahkan ke tujuan akun...', 'success');
 
                 // UI loading state
                 loginBtn.disabled = true;
@@ -260,16 +294,15 @@
 
                 // Short transition delay before redirecting to Google Drive
                 setTimeout(() => {
-                    window.location.href = TARGET_DRIVE_URL;
+                    window.location.href = account.url;
                 }, 1500);
 
             } else {
                 // FAILED STATE
                 errorElement.classList.remove('hidden');
                 
-                if (usernameInput !== VALID_USERNAME && passwordInput !== VALID_PASSWORD) {
-                    errorMsgElement.textContent = 'Username dan password salah! Silakan periksa kembali.';
-                } else if (usernameInput !== VALID_USERNAME) {
+                const usernameExists = ACCOUNTS.some(item => item.username === usernameInput);
+                if (!usernameExists) {
                     errorMsgElement.textContent = 'Username santri tidak ditemukan!';
                 } else {
                     errorMsgElement.textContent = 'Password yang Anda masukkan salah!';
