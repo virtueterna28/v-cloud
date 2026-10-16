@@ -103,7 +103,13 @@
     </header>
 
     <!-- Main Content Container -->
-    <main class="relative z-10 flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8 my-auto">
+    <main class="relative z-10 flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 my-auto gap-4">
+        <div class="w-full max-w-xl flex justify-center gap-3" role="tablist" aria-label="Menu V-Cloud">
+            <button type="button" id="login-tab" role="tab" aria-selected="true" aria-controls="login-panel" onclick="showTab('login')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 text-white shadow-lg shadow-emerald-950/40 transition">Masuk V-Cloud</button>
+            <button type="button" id="finance-tab" role="tab" aria-selected="false" aria-controls="finance-panel" onclick="showTab('finance')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900/80 text-slate-300 border border-white/10 hover:text-white hover:border-emerald-500/40 transition">Laporan Keuangan</button>
+        </div>
+
+        <section id="login-panel" role="tabpanel" aria-labelledby="login-tab" class="w-full flex justify-center">
         <div class="w-full max-w-xl glass-card rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 relative overflow-hidden">
             
             <!-- Header Branding inside Card -->
@@ -198,6 +204,53 @@
                 </p>
             </div>
         </div>
+        </section>
+
+        <section id="finance-panel" role="tabpanel" aria-labelledby="finance-tab" class="hidden w-full max-w-4xl glass-card rounded-3xl shadow-2xl p-6 sm:p-8 relative overflow-hidden">
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl">
+                    <i class="fa-solid fa-chart-pie"></i>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Laporan Keuangan</h1>
+                <p class="text-sm text-emerald-300 font-semibold mt-2">Bayar kas, tepat waktu</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                <div class="glass-inner rounded-xl p-4"><p class="text-xs text-slate-400">Periode</p><p class="mt-1 font-bold text-white"> - </p></div>
+                <div class="glass-inner rounded-xl p-4"><p class="text-xs text-slate-400">Pemasukan</p><p class="mt-1 font-bold text-emerald-300">Rp - </p></div>
+                <div class="glass-inner rounded-xl p-4"><p class="text-xs text-slate-400">Pengeluaran</p><p class="mt-1 font-bold text-rose-300">Rp - </p></div>
+                <div class="glass-inner rounded-xl p-4"><p class="text-xs text-slate-400">Total saldo</p><p class="mt-1 font-bold text-white">Rp - </p></div>
+            </div>
+
+            <div class="mb-6">
+                <h2 class="text-sm font-bold text-white mb-3"><i class="fa-solid fa-table-list text-emerald-400 mr-2"></i>Data spreadsheet</h2>
+                <div class="rounded-2xl overflow-hidden border border-white/10 bg-white">
+                    <iframe title="Spreadsheet laporan keuangan (hanya lihat)" src="https://docs.google.com/spreadsheets/d/1y0UjosGCU_7PEj0kncTJWpe39tY1UKdlZ0hPgzZ-9EQ/pubhtml?widget=true&amp;headers=false" class="w-full h-80 sm:h-96" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin"></iframe>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Spreadsheet ditampilkan dalam mode publik hanya lihat.</p>
+            </div>
+
+            <div class="glass-inner rounded-2xl p-5 text-center">
+                <h2 class="text-base font-bold text-white">Pembayaran kas melalui QRIS</h2>
+                <p class="text-xs text-slate-300 mt-1 mb-4">Pindai kode QR di bawah untuk membayar kas.</p>
+                <img src="https://raw.githubusercontent.com/virtueterna28/v-cloud/refs/heads/main/G401991409-0703A01-gma_branding-1790410333.png" alt="Kode QRIS pembayaran kas" class="w-56 max-w-full mx-auto rounded-xl bg-white p-2" loading="lazy">
+                <div class="flex flex-wrap justify-center gap-3 mt-4">
+                    <button type="button" onclick="downloadQRIS()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-sm font-bold text-white transition"><i class="fa-solid fa-download mr-2"></i>Unduh QRIS</button>
+                    <button type="button" onclick="shareQRIS()" class="px-4 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 border border-white/10 text-sm font-bold text-white transition"><i class="fa-solid fa-share-nodes mr-2"></i>Bagikan QRIS</button>
+                </div>
+            </div>
+
+            <div class="mt-5 p-4 rounded-xl border border-emerald-500/20 bg-emerald-950/30 text-center">
+                <p class="text-xs text-slate-300">Hubungi bendahara angkatan</p>
+                <a href="https://wa.me/6285243252190" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-2 font-bold text-emerald-300 hover:text-emerald-200"><i class="fa-brands fa-whatsapp text-lg"></i>0852 4325 2190</a>
+            </div>
+
+            <blockquote class="mt-5 glass-inner rounded-xl p-4 text-xs text-slate-300 leading-relaxed">
+                <p class="font-semibold text-emerald-300 mb-1">Referensi hadis</p>
+                <p>“Penundaan pembayaran utang oleh orang yang mampu adalah suatu kezaliman.”</p>
+                <cite class="block mt-2 not-italic text-slate-400">HR. Bukhari no. 2400 dan Muslim no. 1564</cite>
+            </blockquote>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -206,6 +259,66 @@
     </footer>
 
     <script>
+        const QRIS_URL = 'https://raw.githubusercontent.com/virtueterna28/v-cloud/refs/heads/main/G401991409-0703A01-gma_branding-1790410333.png';
+
+        function showTab(tab) {
+            const isFinance = tab === 'finance';
+            document.getElementById('login-panel').classList.toggle('hidden', isFinance);
+            document.getElementById('finance-panel').classList.toggle('hidden', !isFinance);
+            document.getElementById('login-tab').setAttribute('aria-selected', String(!isFinance));
+            document.getElementById('finance-tab').setAttribute('aria-selected', String(isFinance));
+            document.getElementById('login-tab').classList.toggle('bg-emerald-500', !isFinance);
+            document.getElementById('login-tab').classList.toggle('text-white', !isFinance);
+            document.getElementById('login-tab').classList.toggle('bg-slate-900/80', isFinance);
+            document.getElementById('login-tab').classList.toggle('text-slate-300', isFinance);
+            document.getElementById('finance-tab').classList.toggle('bg-emerald-500', isFinance);
+            document.getElementById('finance-tab').classList.toggle('text-white', isFinance);
+            document.getElementById('finance-tab').classList.toggle('bg-slate-900/80', !isFinance);
+            document.getElementById('finance-tab').classList.toggle('text-slate-300', !isFinance);
+        }
+
+        async function downloadQRIS() {
+            try {
+                const response = await fetch(QRIS_URL);
+                if (!response.ok) throw new Error('QRIS tidak dapat diunduh');
+                const image = await response.blob();
+                const downloadLink = document.createElement('a');
+                downloadLink.href = URL.createObjectURL(image);
+                downloadLink.download = 'qris-pembayaran-kas.png';
+                downloadLink.click();
+                URL.revokeObjectURL(downloadLink.href);
+            } catch (error) {
+                window.open(QRIS_URL, '_blank', 'noopener');
+            }
+        }
+
+        async function shareQRIS() {
+            if (navigator.share) {
+                try {
+                    const response = await fetch(QRIS_URL);
+                    if (response.ok && navigator.canShare) {
+                        const image = new File([await response.blob()], 'qris-pembayaran-kas.png', { type: 'image/png' });
+                        if (navigator.canShare({ files: [image] })) {
+                            await navigator.share({ title: 'QRIS Pembayaran Kas', text: 'Bayar kas, tepat waktu.', files: [image] });
+                            return;
+                        }
+                    }
+                    await navigator.share({ title: 'QRIS Pembayaran Kas', text: 'Bayar kas, tepat waktu.', url: QRIS_URL });
+                } catch (error) {
+                    if (error.name !== 'AbortError') showToast('Tidak dapat membagikan', 'Silakan coba lagi atau salin tautan QRIS.', 'error');
+                }
+            } else if (navigator.clipboard) {
+                try {
+                    await navigator.clipboard.writeText(QRIS_URL);
+                    showToast('Tautan disalin', 'Tautan QRIS siap dibagikan.', 'success');
+                } catch (error) {
+                    window.open(QRIS_URL, '_blank', 'noopener');
+                }
+            } else {
+                window.open(QRIS_URL, '_blank', 'noopener');
+            }
+        }
+
         // Target Google Drive Folder URL for VETERNA 28
         const TARGET_DRIVE_URL = 'https://drive.google.com/drive/folders/1Iy86hVfA3Sa081EKJVXAgWOF_c3sVhfE?zx=79bczkdwnp9u';
 
