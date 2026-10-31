@@ -104,9 +104,11 @@
 
     <!-- Main Content Container -->
     <main class="relative z-10 flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 my-auto gap-4">
-        <div class="w-full max-w-xl flex justify-center gap-3" role="tablist" aria-label="Menu V-Cloud">
+        <div class="w-full max-w-xl flex flex-wrap justify-center gap-3" role="tablist" aria-label="Menu V-Cloud">
             <button type="button" id="login-tab" role="tab" aria-selected="true" aria-controls="login-panel" onclick="showTab('login')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-emerald-500 text-white shadow-lg shadow-emerald-950/40 transition">Masuk V-Cloud</button>
-            <button type="button" id="finance-tab" role="tab" aria-selected="false" aria-controls="finance-panel" onclick="showTab('finance')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900/80 text-slate-300 border border-white/10 hover:text-white hover:border-emerald-500/40 transition">Laporan Keuangan</button>
+            <button type="button" id="finance-tab" role="tab" aria-selected="false" aria-controls="finance-panel" onclick="showTab('finance')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900/80 text-slate-300 border border-white/10 hover:text-white hover:border-emerald-500/40 transition">V-Financial</button>
+            <button type="button" id="information-tab" role="tab" aria-selected="false" aria-controls="information-panel" onclick="showTab('information')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900/80 text-slate-300 border border-white/10 hover:text-white hover:border-emerald-500/40 transition">Information</button>
+            <button type="button" id="voting-tab" role="tab" aria-selected="false" aria-controls="voting-panel" onclick="showTab('voting')" class="px-5 py-2.5 rounded-xl text-sm font-bold bg-slate-900/80 text-slate-300 border border-white/10 hover:text-white hover:border-emerald-500/40 transition">Voting</button>
         </div>
 
         <section id="login-panel" role="tabpanel" aria-labelledby="login-tab" class="w-full flex justify-center">
@@ -211,7 +213,7 @@
                 <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl">
                     <i class="fa-solid fa-chart-pie"></i>
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Laporan Keuangan</h1>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Veterna Financial</h1>
                 <p class="text-sm text-emerald-300 font-semibold mt-2">Bayar kas, tepat waktu</p>
             </div>
 
@@ -257,6 +259,94 @@
                 <cite class="block mt-2 not-italic text-slate-400">HR. Bukhari no. 2400 dan Muslim no. 1564</cite>
             </blockquote>
         </section>
+
+        <section id="information-panel" role="tabpanel" aria-labelledby="information-tab" class="hidden w-full max-w-4xl glass-card rounded-3xl shadow-2xl p-6 sm:p-8 relative overflow-hidden">
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Informasi Kegiatan Veterna</h1>
+                <p class="text-sm text-emerald-300 font-semibold mt-2">Agenda kegiatan angkatan</p>
+            </div>
+
+            <!-- Programmer dapat mengisi nama kegiatan, deskripsi, hari/tanggal, tempat, dan waktu pada setiap kartu. -->
+            <div class="space-y-4">
+                <article class="glass-inner rounded-2xl p-5">
+                    <h2 class="text-base font-bold text-emerald-300 mb-3">Kegiatan 1</h2>
+                    <dl class="grid gap-3 text-sm sm:grid-cols-2">
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Nama kegiatan/acara</dt><dd class="mt-1 text-white">Peluncuran Website Veterna</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Hari/tanggal</dt><dd class="mt-1 text-white">senin, 28- Desember - 2026</dd></div>
+                        <div class="sm:col-span-2"><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Deskripsi</dt><dd class="mt-1 text-slate-200">Peluncuran website oleh Abhipraya Damas</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Tempat</dt><dd class="mt-1 text-white">Via Google Meet</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Waktu</dt><dd class="mt-1 text-white">09.00 -09.30</dd></div>
+                    </dl>
+                </article>
+                <article class="glass-inner rounded-2xl p-5">
+                    <h2 class="text-base font-bold text-emerald-300 mb-3">Kegiatan 2</h2>
+                    <dl class="grid gap-3 text-sm sm:grid-cols-2">
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Nama kegiatan/acara</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Hari/tanggal</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                        <div class="sm:col-span-2"><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Deskripsi</dt><dd class="mt-1 text-slate-200">Belum diisi</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Tempat</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Waktu</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                    </dl>
+                </article>
+                <article class="glass-inner rounded-2xl p-5">
+                    <h2 class="text-base font-bold text-emerald-300 mb-3">Kegiatan 3</h2>
+                    <dl class="grid gap-3 text-sm sm:grid-cols-2">
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Nama kegiatan/acara</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Hari/tanggal</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                        <div class="sm:col-span-2"><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Deskripsi</dt><dd class="mt-1 text-slate-200">Belum diisi</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Tempat</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                        <div><dt class="text-xs font-semibold uppercase tracking-wide text-slate-400">Waktu</dt><dd class="mt-1 text-white">Belum diisi</dd></div>
+                    </dl>
+                </article>
+            </div>
+
+            <blockquote class="mt-5 glass-inner rounded-xl p-4 text-xs text-slate-300 leading-relaxed">
+                <p class="font-semibold text-emerald-300 mb-1">Referensi hadis</p>
+                <p>“Perumpamaan orang-orang mukmin dalam hal saling mencintai, menyayangi, dan mengasihi adalah seperti satu tubuh.”</p>
+                <cite class="block mt-2 not-italic text-slate-400">HR. Bukhari no. 6011 dan Muslim no. 2586</cite>
+            </blockquote>
+
+            <div class="mt-5 p-4 rounded-xl border border-emerald-500/20 bg-emerald-950/30 text-sm text-slate-300 leading-relaxed">
+                <p><strong class="text-emerald-300">Catatan:</strong> Untuk menambahkan acara, silakan konfirmasi kepada penggerak, lalu sampaikan informasinya kepada Developer Web Veterna.</p>
+                <p class="mt-2">Informasi koordinasi selengkapnya dapat dilihat langsung di grup angkatan.</p>
+            </div>
+        </section>
+
+        <section id="voting-panel" role="tabpanel" aria-labelledby="voting-tab" class="hidden w-full max-w-xl glass-card rounded-3xl shadow-2xl p-6 sm:p-8 relative overflow-hidden">
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 mx-auto mb-3 rounded-2xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl">
+                    <i class="fa-solid fa-check-to-slot"></i>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Voting Veterna</h1>
+                <p class="text-sm text-slate-300 mt-2">Masukkan token untuk membuka tautan voting.</p>
+            </div>
+            <form id="voting-form" onsubmit="handleVotingAccess(event)" class="space-y-4">
+                <div>
+                    <label for="voting-token" class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Token akses</label>
+                    <div class="relative">
+                        <input type="password" id="voting-token" required autocomplete="off" class="w-full px-4 py-3.5 pr-12 bg-slate-900/90 border border-slate-700/80 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition" placeholder="Masukkan token">
+                        <button type="button" onclick="toggleVotingTokenVisibility()" class="absolute inset-y-0 right-0 px-4 flex items-center text-slate-400 hover:text-slate-200 transition" aria-label="Lihat token" title="Lihat token">
+                            <i id="voting-token-toggle-icon" class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <p id="voting-error" class="hidden text-sm text-red-300" role="alert">Token tidak sesuai. Silakan coba lagi.</p>
+                <button type="submit" class="w-full py-3.5 px-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-950/60 transition">Verifikasi token</button>
+            </form>
+            <div id="voting-link" class="hidden mt-5" aria-live="polite">
+                <p class="text-sm text-emerald-300 font-semibold mb-3 text-center">Token benar. Silakan isi formulir voting berikut.</p>
+                <iframe
+                    title="Formulir voting Veterna"
+                    src="https://forms.gle/s9scJgbZgXNcfBQ87"
+                    class="block w-full h-[75vh] min-h-[600px] rounded-xl border border-white/10 bg-white"
+                    loading="lazy">
+                </iframe>
+                <p class="text-xs text-slate-400 mt-3 text-center">Jika formulir tidak tampil, <a href="https://forms.gle/s9scJgbZgXNcfBQ87" target="_blank" rel="noopener noreferrer" class="text-emerald-300 underline hover:text-emerald-200">buka formulir voting di tab baru</a>.</p>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -268,19 +358,41 @@
         const QRIS_URL = 'https://raw.githubusercontent.com/virtueterna28/v-cloud/refs/heads/main/G401991409-0703A01-gma_branding-1790410333.png';
 
         function showTab(tab) {
-            const isFinance = tab === 'finance';
-            document.getElementById('login-panel').classList.toggle('hidden', isFinance);
-            document.getElementById('finance-panel').classList.toggle('hidden', !isFinance);
-            document.getElementById('login-tab').setAttribute('aria-selected', String(!isFinance));
-            document.getElementById('finance-tab').setAttribute('aria-selected', String(isFinance));
-            document.getElementById('login-tab').classList.toggle('bg-emerald-500', !isFinance);
-            document.getElementById('login-tab').classList.toggle('text-white', !isFinance);
-            document.getElementById('login-tab').classList.toggle('bg-slate-900/80', isFinance);
-            document.getElementById('login-tab').classList.toggle('text-slate-300', isFinance);
-            document.getElementById('finance-tab').classList.toggle('bg-emerald-500', isFinance);
-            document.getElementById('finance-tab').classList.toggle('text-white', isFinance);
-            document.getElementById('finance-tab').classList.toggle('bg-slate-900/80', !isFinance);
-            document.getElementById('finance-tab').classList.toggle('text-slate-300', !isFinance);
+            const tabs = ['login', 'finance', 'information', 'voting'];
+            tabs.forEach(name => {
+                const selected = name === tab;
+                document.getElementById(`${name}-panel`).classList.toggle('hidden', !selected);
+                const button = document.getElementById(`${name}-tab`);
+                button.setAttribute('aria-selected', String(selected));
+                button.classList.toggle('bg-emerald-500', selected);
+                button.classList.toggle('text-white', selected);
+                button.classList.toggle('bg-slate-900/80', !selected);
+                button.classList.toggle('text-slate-300', !selected);
+            });
+        }
+
+        function toggleVotingTokenVisibility() {
+            const tokenInput = document.getElementById('voting-token');
+            const toggleIcon = document.getElementById('voting-token-toggle-icon');
+            const isHidden = tokenInput.type === 'password';
+
+            tokenInput.type = isHidden ? 'text' : 'password';
+            toggleIcon.className = isHidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+        }
+
+        function handleVotingAccess(event) {
+            event.preventDefault();
+            const tokenInput = document.getElementById('voting-token');
+            const error = document.getElementById('voting-error');
+            const link = document.getElementById('voting-link');
+
+            if (tokenInput.value === 'akehtinggi') {
+                error.classList.add('hidden');
+                link.classList.remove('hidden');
+            } else {
+                link.classList.add('hidden');
+                error.classList.remove('hidden');
+            }
         }
 
         async function downloadQRIS() {
